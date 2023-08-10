@@ -7,10 +7,10 @@ const SkiingGame = () => {
 
   const jadon = {
     x: 400,
-    y: 550,
-    width: 20,
-    height: 40,
-    speed: 5,
+    y: 500,
+    width: 40,
+    height: 80,
+    speed: 15,
   };
 
   const handleKeyDown = (event) => {
@@ -37,7 +37,7 @@ const SkiingGame = () => {
 
   const updateObstacles = () => {
     obstacles.current.forEach((obstacle) => {
-      obstacle.y += 5;
+      obstacle.y += 20;
     });
   };
 
