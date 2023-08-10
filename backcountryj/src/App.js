@@ -1,0 +1,14 @@
+import React from 'react';
+import SkiingGame from './SkiingGame';
+
+function App() {
+  return (
+    <div className="App">
+      <h1>Jadon's Skiing Adventure</h1>
+      <SkiingGame />
+    </div>
+  );
+}
+
+export default App;
+
