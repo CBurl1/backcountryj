@@ -1,6 +1,4 @@
 import React, { useRef, useEffect, useState } from 'react';
-import backgroundImageSrc from './crestedbutteambopost.jpg';
-
 
 const SkiingGame = () => {
   const canvasRef = useRef(null);
@@ -9,12 +7,11 @@ const SkiingGame = () => {
 
   const jadon = {
     x: 400,
-    y: canvasRef.current ? canvasRef.current.height - 50 : 400, // Position him at the bottom
-    width: 200, // Increase width
-    height: 200, // Increase height
-    speed: 5,
+    y: canvasRef.current ? canvasRef.current.height - 50 : 450,
+    width: 40,
+    height: 40,
+    speed: 20,
   };
-  
 
   const handleKeyDown = (event) => {
     if (event.key === 'ArrowLeft') {
@@ -25,19 +22,22 @@ const SkiingGame = () => {
   };
 
   const generateObstacle = () => {
+    const type = Math.random() < 0.5 ? 'tree' : 'rock';
+    const size = 20 + Math.random() * 40;
+
     const obstacle = {
       x: Math.random() * canvasRef.current.width,
       y: 0,
-      width: 40, // Increase width
-      height: 40, // Increase height
+      width: size,
+      height: size,
+      type: type,
     };
     obstacles.current.push(obstacle);
   };
-  
 
   const updateObstacles = () => {
     obstacles.current.forEach((obstacle) => {
-      obstacle.y += 5; // Move obstacle down
+      obstacle.y += 5;
     });
   };
 
@@ -49,42 +49,67 @@ const SkiingGame = () => {
         jadon.y < obstacle.y + obstacle.height &&
         jadon.y + jadon.height > obstacle.y
       ) {
-        // Collision detected
         alert('Game Over!');
-        window.location.reload(); // Reload the game
+        window.location.reload();
       }
     });
   };
-  
+
+  const drawTree = (context, x, y, width, height) => {
+    const levels = 3;
+    for (let i = 0; i < levels; i++) {
+      context.fillStyle = '#228B22';
+      context.beginPath();
+      context.moveTo(x + width / 2, y + (i * height) / (levels + 1));
+      context.lineTo(x, y + ((i + 1) * height) / (levels + 1));
+      context.lineTo(x + width, y + ((i + 1) * height) / (levels + 1));
+      context.closePath();
+      context.fill();
+    }
+    context.fillStyle = '#8B4513';
+    context.fillRect(x + width / 3, y + (3 * height) / 4, width / 3, height / 4);
+    context.strokeStyle = '#5A2D0C';
+    context.beginPath();
+    context.moveTo(x + width / 3, y + (3 * height) / 4);
+    context.lineTo(x + width / 3, y + height);
+    context.moveTo(x + 2 * width / 3, y + (3 * height) / 4);
+    context.lineTo(x + 2 * width / 3, y + height);
+    context.stroke();
+  };
+
+  const drawRock = (context, x, y, width, height) => {
+    context.fillStyle = '#A9A9A9';
+    context.beginPath();
+    context.moveTo(x, y + height / 2);
+    context.lineTo(x + width / 4, y);
+    context.lineTo(x + (3 * width) / 4, y);
+    context.lineTo(x + width, y + height / 3);
+    context.lineTo(x + (3 * width) / 4, y + height);
+    context.lineTo(x + width / 4, y + height);
+    context.closePath();
+    context.fill();
+    context.strokeStyle = '#696969';
+    context.beginPath();
+    context.moveTo(x + width / 4, y);
+    context.lineTo(x + width / 4, y + height);
+    context.moveTo(x + (3 * width) / 4, y);
+    context.lineTo(x + (3 * width) / 4, y + height);
+    context.stroke();
+  };
 
   const draw = (context) => {
-    // Create a new Image object
-    const backgroundImage = new Image();
-  
-    // Set the source of the image
-    backgroundImage.src = backgroundImageSrc;
-  
-    // Draw the image once it's loaded
-    backgroundImage.onload = () => {
-      context.drawImage(backgroundImage, 0, 0, context.canvas.width, context.canvas.height);
-    };
-  
-    // Draw Jadon (the skier)
+    context.fillStyle = '#FFF';
+    context.fillRect(0, 0, context.canvas.width, context.canvas.height);
     context.fillStyle = 'red';
     context.fillRect(jadon.x, jadon.y, jadon.width, jadon.height);
-  
-    // Draw obstacles (rocks)
     obstacles.current.forEach((obstacle) => {
-      context.fillStyle = '#8B4513'; // Brown color for rocks
-      context.beginPath();
-      context.arc(obstacle.x + obstacle.width / 2, obstacle.y + obstacle.height / 2, obstacle.width / 2, 0, Math.PI * 2);
-      context.fill();
-      context.closePath();
+      if (obstacle.type === 'tree') {
+        drawTree(context, obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+      } else {
+        drawRock(context, obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+      }
     });
   };
-  
-  
-  
 
   const updateScore = () => {
     setScore((prevScore) => prevScore + 1);
@@ -106,7 +131,6 @@ const SkiingGame = () => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
 
-    // Game loop
     const interval = setInterval(() => {
       draw(context);
       updateObstacles();
@@ -125,4 +149,7 @@ const SkiingGame = () => {
 };
 
 export default SkiingGame;
+
+
+
 
