@@ -1,4 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
+import backgroundImageSrc from './crestedbutteambopost.jpg';
+
 
 const SkiingGame = () => {
   const canvasRef = useRef(null);
@@ -56,21 +58,16 @@ const SkiingGame = () => {
   
 
   const draw = (context) => {
-    // Clear the canvas
-    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+    // Create a new Image object
+    const backgroundImage = new Image();
   
-    // Draw the sky
-    context.fillStyle = '#87CEEB'; // Sky blue color
-    context.fillRect(0, 0, context.canvas.width, context.canvas.height / 2);
+    // Set the source of the image
+    backgroundImage.src = backgroundImageSrc;
   
-    // Draw the snow (sides)
-    context.fillStyle = '#FFF'; // White color for snow
-    context.fillRect(0, context.canvas.height / 2, context.canvas.width / 4, context.canvas.height / 2);
-    context.fillRect((3 * context.canvas.width) / 4, context.canvas.height / 2, context.canvas.width / 4, context.canvas.height / 2);
-  
-    // Draw the trail (middle)
-    context.fillStyle = '#A9A9A9'; // Trail color
-    context.fillRect(context.canvas.width / 4, context.canvas.height / 2, context.canvas.width / 2, context.canvas.height / 2);
+    // Draw the image once it's loaded
+    backgroundImage.onload = () => {
+      context.drawImage(backgroundImage, 0, 0, context.canvas.width, context.canvas.height);
+    };
   
     // Draw Jadon (the skier)
     context.fillStyle = 'red';
@@ -85,6 +82,7 @@ const SkiingGame = () => {
       context.closePath();
     });
   };
+  
   
   
 
