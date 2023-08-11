@@ -107,12 +107,25 @@ const SkiingGame = () => {
     const treeWidth = 40;
     const treeHeight = 40;
     const numberOfTrees = canvasRef.current.height / treeHeight;
+    const frequency = 0.01; // You can adjust this value to change the frequency of the variation
+    const amplitude = 40; // You can adjust this value to change the amplitude of the variation
 
     for (let i = 0; i < numberOfTrees; i++) {
-      drawTree(context, 0, i * treeHeight, treeWidth, treeHeight); // Left side
-      drawTree(context, canvasRef.current.width - treeWidth, i * treeHeight, treeWidth, treeHeight); // Right side
+      const y = i * treeHeight;
+      const variation = Math.sin(y * frequency) * amplitude;
+
+      // Draw trees on the left side with varying width
+      for (let x = 0; x < treeWidth + variation; x += treeWidth) {
+        drawTree(context, x, y, treeWidth, treeHeight);
+      }
+
+      // Draw trees on the right side with varying width
+      for (let x = canvasRef.current.width - treeWidth - variation; x < canvasRef.current.width; x += treeWidth) {
+        drawTree(context, x, y, treeWidth, treeHeight);
+      }
     }
   };
+
 
   const drawSnowBackground = (context) => {
     const gradient = context.createLinearGradient(0, 0, canvasRef.current.width, canvasRef.current.height);
