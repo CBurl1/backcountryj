@@ -1,11 +1,12 @@
 import React from 'react';
-import forest from './Forest.js'; // Adjust the path to match your project's structure
 import Forest from './Forest.js';
+import SnowBackground from './SnowBackground.js';
 
 const MainGame = () => {
   return (
     <div>
       <h1>Welcome to Ski Adventure</h1>
+      <SnowBackground width={800} height={600} />
       <Forest />
     </div>
   );
