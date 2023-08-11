@@ -14,9 +14,9 @@ const SkiingGame = () => {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'ArrowLeft') {
+    if (event.key === 'ArrowLeft' && jadon.x - jadon.speed > 40) {
       jadon.x -= jadon.speed;
-    } else if (event.key === 'ArrowRight') {
+    } else if (event.key === 'ArrowRight' && jadon.x + jadon.speed < canvasRef.current.width - 40 - jadon.width) {
       jadon.x += jadon.speed;
     }
   };
@@ -26,7 +26,7 @@ const SkiingGame = () => {
     const size = 20 + Math.random() * 40;
 
     const obstacle = {
-      x: Math.random() * canvasRef.current.width,
+      x: Math.random() * (canvasRef.current.width - 80) + 40, // Adjusted to keep obstacles within the trail
       y: 0,
       width: size,
       height: size,
@@ -55,48 +55,6 @@ const SkiingGame = () => {
     });
   };
 
-  const drawSkier = (context, x, y, width, height) => {
-    // Draw the head (circle)
-    context.fillStyle = '#FFC1C1'; // Skin color for the head
-    context.beginPath();
-    context.arc(x + width / 2, y, width / 4, 0, Math.PI * 2);
-    context.fill();
-    context.closePath();
-  
-    // Draw the body (rectangle)
-    context.fillStyle = '#FF4500'; // Orange color for the body
-    context.fillRect(x, y + width / 4, width, height - width / 4);
-  
-    // Draw the arms (lines)
-    context.strokeStyle = '#FF4500';
-    context.beginPath();
-    context.moveTo(x, y + height / 2);
-    context.lineTo(x - width / 2, y + height / 2);
-    context.moveTo(x + width, y + height / 2);
-    context.lineTo(x + 1.5 * width, y + height / 2);
-    context.stroke();
-  
-    // Draw the skis (long rectangles)
-    context.fillStyle = '#0000FF'; // Blue color for the skis
-    context.fillRect(x - width / 2, y + height, width * 2, height / 4);
-    context.fillRect(x - width / 2, y + height, width * 2, height / 4);
-  
-    // Draw the ski poles (lines with circles for handles)
-    context.strokeStyle = '#8B4513'; // Brown color for the poles
-    context.beginPath();
-    context.moveTo(x, y + height / 2);
-    context.lineTo(x - width, y + height * 1.5);
-    context.moveTo(x + width, y + height / 2);
-    context.lineTo(x + 2 * width, y + height * 1.5);
-    context.stroke();
-    context.fillStyle = '#8B4513';
-    context.beginPath();
-    context.arc(x - width, y + height / 2, width / 8, 0, Math.PI * 2);
-    context.arc(x + 2 * width, y + height / 2, width / 8, 0, Math.PI * 2);
-    context.fill();
-    context.closePath();
-  };
-  
   const drawTree = (context, x, y, width, height) => {
     const levels = 3;
     for (let i = 0; i < levels; i++) {
@@ -118,7 +76,7 @@ const SkiingGame = () => {
     context.lineTo(x + 2 * width / 3, y + height);
     context.stroke();
   };
-  
+
   const drawRock = (context, x, y, width, height) => {
     context.fillStyle = '#A9A9A9';
     context.beginPath();
@@ -138,11 +96,28 @@ const SkiingGame = () => {
     context.lineTo(x + (3 * width) / 4, y + height);
     context.stroke();
   };
-  
+
+
+  const drawSkier = (context, x, y, width, height) => {
+    context.fillStyle = '#000'; // Black color for the skier
+    context.fillRect(x, y, width, height);
+  };
+
+  const drawForest = (context) => {
+    const treeWidth = 40;
+    const treeHeight = 40;
+    const numberOfTrees = canvasRef.current.height / treeHeight;
+
+    for (let i = 0; i < numberOfTrees; i++) {
+      drawTree(context, 0, i * treeHeight, treeWidth, treeHeight); // Left side
+      drawTree(context, canvasRef.current.width - treeWidth, i * treeHeight, treeWidth, treeHeight); // Right side
+    }
+  };
 
   const draw = (context) => {
     context.fillStyle = '#FFF';
     context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+    drawForest(context); // Draw the forest
     drawSkier(context, jadon.x, jadon.y, jadon.width, jadon.height);
 
     obstacles.current.forEach((obstacle) => {
@@ -192,6 +167,7 @@ const SkiingGame = () => {
 };
 
 export default SkiingGame;
+
 
 
 

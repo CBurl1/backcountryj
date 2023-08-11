@@ -1,5 +1,6 @@
 import React from 'react';
 import SkiingGame from './SkiingGame';
+import './app.css';
 
 function App() {
   return (
