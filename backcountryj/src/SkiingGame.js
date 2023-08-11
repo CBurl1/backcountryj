@@ -114,9 +114,18 @@ const SkiingGame = () => {
     }
   };
 
+  const drawSnowBackground = (context) => {
+    const gradient = context.createLinearGradient(0, 0, canvasRef.current.width, canvasRef.current.height);
+    gradient.addColorStop(0, '#f0f0f0');
+    gradient.addColorStop(0.5, '#e6e6e6');
+    gradient.addColorStop(1, '#f0f0f0');
+
+    context.fillStyle = gradient;
+    context.fillRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+  };
+
   const draw = (context) => {
-    context.fillStyle = '#FFF';
-    context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+    drawSnowBackground(context); // Draw the snow background
     drawForest(context); // Draw the forest
     drawSkier(context, jadon.x, jadon.y, jadon.width, jadon.height);
 
@@ -128,6 +137,7 @@ const SkiingGame = () => {
       }
     });
   };
+
 
   const updateScore = () => {
     setScore((prevScore) => prevScore + 1);
