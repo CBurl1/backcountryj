@@ -58,11 +58,15 @@ const SnowForestBackground = ({ width, height }) => {
 
   const generateForestPattern = () => {
     const pattern = [];
-    for (let i = 0; i < 30; i++) {
-      pattern.push(Math.random() * 200 + 40);
+    const amplitude = 50;
+    const frequency = 1;
+    for (let i = 0; i < 1000; i++) {
+      const sineValue = Math.sin(i * frequency) * amplitude;
+      pattern.push(200 + sineValue);
     }
     setForestPattern(pattern);
   };
+  
 
   useEffect(() => {
     generateForestPattern();
