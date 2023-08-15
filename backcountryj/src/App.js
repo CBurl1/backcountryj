@@ -1,10 +1,11 @@
 import React from 'react';
-import SkiingGame from './SkiingGame';
+import GameView from './GameView';
 
 function App() {
   return (
     <div className="App">
-      <SkiingGame />
+      <h1>Welcome to Ski Adventure</h1>
+      <GameView />
     </div>
   );
 }
