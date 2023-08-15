@@ -40,6 +40,16 @@ const SnowForestBackground = ({ width, height }) => {
     const treeWidth = 40;
     const treeHeight = 40;
 
+    forestPattern.forEach((variation, index) => {
+      const y = index * treeHeight;
+      for (let x = 0; x < variation; x += treeWidth) {
+        drawTree(context, x, y, treeWidth, treeHeight);
+      }
+      for (let x = canvasRef.current.width - variation; x < canvasRef.current.width; x += treeWidth) {
+        drawTree(context, x, y, treeWidth, treeHeight);
+      }
+    });
+  };
 
   const draw = (context) => {
     drawSnowBackground(context);
@@ -81,3 +91,4 @@ const SnowForestBackground = ({ width, height }) => {
 };
 
 export default SnowForestBackground;
+
