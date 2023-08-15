@@ -3,10 +3,7 @@ import GameView from './GameView';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Welcome to Ski Adventure</h1>
       <GameView />
-    </div>
   );
 }
 

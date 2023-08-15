@@ -1,23 +1,22 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import Forest from './Forest.js';
 import SnowBackground from './SnowBackground.js';
 
-const GameView = () => {
-  const canvasRef = useRef(null);
+const MainGame = () => {
+  const width = 800;
+  const height = 600;
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
-
-    SnowBackground({ width: 800, height: 600, context });
-
-    Forest({ context });
-  }, []);
-
-  return <canvas ref={canvasRef} width={800} height={600} />;
+  return (
+    <div style={{ position: 'relative', width: `${width}px`, height: `${height}px` }}>
+      <h1>Welcome to Ski Adventure</h1>
+      <SnowBackground width={width} height={height} />
+      <Forest width={width} height={height} />
+    </div>
+  );
 };
 
-export default GameView;
+export default MainGame;
+
 
 
 
