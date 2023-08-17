@@ -72,7 +72,7 @@ const SnowForestBackground = ({ width, height }) => {
     generateForestPattern();
     const forestInterval = setInterval(() => {
       setForestPattern((prevPattern) => {
-        const newPattern = [...prevPattern.slice(1), Math.random() * 200 + 40];
+        const newPattern = [Math.random() * 200 + 40, ...prevPattern.slice(0, -1)];
         return newPattern;
       });
     }, 300);
