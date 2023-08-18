@@ -1,6 +1,8 @@
 .character-selection {
     text-align: center;
     padding: 20px;
+    background-color: #DAD7CD;
+    color: #344E41;
   }
   
   .character-grid {
@@ -9,17 +11,34 @@
     justify-content: center;
   }
   
+  .character-box {
+    border: 1px solid #3A5A40;
+    margin: 10px;
+    padding: 10px;
+    width: 120px; /* Adjust as needed */
+    text-align: center; /* Center content horizontally */
+    transition: transform 0.3s ease;
+    background-color: #A3B18A;
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+  }
+  
+  
+  .character-box:hover {
+    transform: scale(1.1);
+    background-color: #588157;
+  }
+  
   .character-button {
     background: none;
     border: none;
     cursor: pointer;
-    margin: 10px;
-    padding: 10px;
-    transition: transform 0.3s ease;
-  }
-  
-  .character-button:hover {
-    transform: scale(1.1);
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
   }
   
   .character-image {
@@ -27,4 +46,11 @@
     height: 100px;
     object-fit: contain;
   }
+  
+  .character-name {
+    display: block;
+    margin-top: 5px;
+  }
+  
+  
   
