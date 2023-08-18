@@ -1,15 +1,18 @@
 import React from 'react';
+import './CharacterSelection.css';
 
 const CharacterSelection = ({ characters, onSelect }) => {
   return (
-    <div>
+    <div className="character-selection">
       <h2>Select Your Character</h2>
-      <div>
+      <div className="character-grid">
         {characters.map((character, index) => (
-          <button key={index} onClick={() => onSelect(character)}>
-            <img src={character.image} alt={character.name} />
-            <span>{character.name}</span>
-          </button>
+          <div key={index} className="character-box">
+            <button onClick={() => onSelect(character)} className="character-button">
+              <img src={character.image} alt={character.name} className="character-image" />
+            </button>
+            <span className="character-name">{character.name}</span>
+          </div>
         ))}
       </div>
     </div>
@@ -17,3 +20,5 @@ const CharacterSelection = ({ characters, onSelect }) => {
 };
 
 export default CharacterSelection;
+
+
