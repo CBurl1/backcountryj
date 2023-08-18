@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SnowForestBackground from './Background.js';
 import Skier from './Skier';
 import CharacterSelection from './CharacterSelection';
+import croc from './bj-croc.png';
 
 const GameView = () => {
   const [skierPosition, setSkierPosition] = useState({ x: 400, y: 300 });
@@ -10,7 +11,7 @@ const GameView = () => {
     { name: 'Jadon', image: 'character1.png' },
     { name: 'Christian', image: 'character2.png' },
     { name: 'Ian', image: 'character2.png' },
-    { name: 'The Croc', image: 'character2.png' },
+    { name: 'Croc', image: croc },
   ];
 
   const handleCharacterSelect = (character) => {
