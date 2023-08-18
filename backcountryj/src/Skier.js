@@ -4,6 +4,7 @@ const Skier = ({ character, x, y }) => {
     left: x + 'px',
     top: y + 'px',
     backgroundImage: `url(${character.image})`,
+    backgroundSize: 'contain',
     width: '40px',
     height: '40px',
   };
@@ -12,4 +13,5 @@ const Skier = ({ character, x, y }) => {
 };
 
 export default Skier;
+
 

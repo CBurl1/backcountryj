@@ -3,14 +3,17 @@ import SnowForestBackground from './Background.js';
 import Skier from './Skier';
 import CharacterSelection from './CharacterSelection';
 import croc from './bj-croc.png';
+import ian from './bj-ian.jpg'
+import jadon from './bj-jadon.png'
+import christian from './bj-christian.jpg'
 
 const GameView = () => {
   const [skierPosition, setSkierPosition] = useState({ x: 400, y: 300 });
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const characters = [
-    { name: 'Jadon', image: 'character1.png' },
-    { name: 'Christian', image: 'character2.png' },
-    { name: 'Ian', image: 'character2.png' },
+    { name: 'Jadon', image: jadon },
+    { name: 'Christian', image: christian },
+    { name: 'Ian', image: ian },
     { name: 'Croc', image: croc },
   ];
 
