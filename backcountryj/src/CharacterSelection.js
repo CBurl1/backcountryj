@@ -4,7 +4,7 @@ import './CharacterSelection.css';
 const CharacterSelection = ({ characters, onSelect }) => {
   return (
     <div className="character-selection">
-      <h2>Select Your Character</h2>
+      <h2>Select Your Shredder</h2>
       <div className="character-grid">
         {characters.map((character, index) => (
           <div key={index} className="character-box">
