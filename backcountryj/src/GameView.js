@@ -10,16 +10,18 @@ import jake from './bj-jake.png'
 const GameView = () => {
   const [skierPosition, setSkierPosition] = useState({ x: 400, y: 300 });
   const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const [type, setType] = useState(null);
   const characters = [
-    { name: 'Jadon', image: jadon },
-    // { name: 'Christian', image: christian },
-    // { name: 'Greg', image: greg },
-    // { name: 'Grizz', image: grizz },
-    // { name: 'Mac', image: mac },
-    // { name: 'Nate', image: nate },
-    { name: 'Ian', image: ian },
-    { name: 'Croc', image: croc },
-    { name: 'Jake', image: jake },
+    { name: 'Jadon', image: jadon, type: 'snowboard' },
+    // { name: 'Christian', image: christian, type: 'ski' },
+    // { name: 'Greg', image: greg, type: 'ski' },
+    // { name: 'Grizz', image: grizz, type: 'snowboard' },
+    // { name: 'Mac', image: mac, type: 'ski' },
+    // { name: 'Nate', image: nate, type: 'ski' },
+    // { name: 'Ben', image: ben, type: 'ski' },
+    { name: 'Ian', image: ian, type: 'snowboard' },
+    { name: 'Croc', image: croc, type: 'ski' },
+    { name: 'Jake', image: jake, type: 'ski'},
   ];
 
   const handleCharacterSelect = (character) => {
