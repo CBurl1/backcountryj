@@ -48,20 +48,29 @@ const GameView = () => {
 
   return (
     <div>
-      <h1>Welcome to Ski Adventure</h1>
       {selectedCharacter ? (
         <>
           <SnowForestBackground width={800} height={600} />
           <Skier character={selectedCharacter} x={skierPosition.x} y={skierPosition.y} />
         </>
       ) : (
-        <CharacterSelection characters={characters} onSelect={handleCharacterSelect} />
+        <>
+          <h1>Welcome to Ski Adventure</h1>
+          <CharacterSelection characters={characters} onSelect={handleCharacterSelect} />
+        </>
       )}
     </div>
   );
 };
 
 export default GameView;
+
+
+
+
+
+
+  
 
 
 
