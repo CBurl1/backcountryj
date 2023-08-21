@@ -1,22 +1,31 @@
+:root {
+  --dim-gray: #6A6C78ff;
+  --silver-lake-blue: #6489BEff;
+  --oxford-blue: #202738ff;
+  --columbia-blue: #B7CDE1ff;
+  --wenge: #564644ff;
+}
+
 body {
-    background-color: #DAD7CD;
-    color: #344E41;
-    font-family: Arial, sans-serif;
-  }
-  
-  #root {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #A3B18A;
-    padding: 20px;
-  }
-  
-  .game-container {
-    background-color: #588157;
-    border: 2px solid #3A5A40;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  }
+  background-color: var(--columbia-blue);
+  color: var(--wenge);
+  font-family: Arial, sans-serif;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--silver-lake-blue);
+  padding: 20px;
+}
+
+.game-container {
+  background-color: var(--oxford-blue);
+  border: 2px solid var(--dim-gray);
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
   
