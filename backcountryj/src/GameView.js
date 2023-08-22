@@ -68,7 +68,7 @@ const GameView = () => {
         </>
       ) : (
         <>
-          <h1 style={{ textAlign: 'center' }}>Welcome to Ski Adventure</h1>
+          <h1 style={{ textAlign: 'center' }}>Let's Go Skiing!</h1>
           <CharacterSelection characters={characters} onSelect={handleCharacterSelect} />
         </>
       )}

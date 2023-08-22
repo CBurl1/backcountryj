@@ -6,12 +6,49 @@ const CharacterSelection = ({ characters, onSelect }) => {
 
   const sortCharacters = () => {
     return characters.sort((a, b) => {
-      if (selectedType === 'all') return 0;
-      if (a.type === selectedType && b.type !== selectedType) return -1;
-      if (b.type === selectedType && a.type !== selectedType) return 1;
+      if (selectedType === 'all' || a.type === b.type) {
+        return a.name.localeCompare(b.name); // Sort alphabetically by name if types are the same
+      }
+      if (a.type === selectedType) return -1;
+      if (b.type === selectedType) return 1;
       return 0;
     });
   };
+
+  const renderCharacters = () => {
+    if (selectedType === 'all') {
+      return sortCharacters().map((character, index) => (
+        <div key={index} className="character-box">
+          <button onClick={() => onSelect(character)} className="character-button">
+            <img src={character.image} alt={character.name} className="character-image" />
+          </button>
+          <span className="character-name">{character.name}</span>
+        </div>
+      ));
+    }
+  
+    const sortedCharacters = sortCharacters();
+    let lastType = null;
+    const elements = [];
+  
+    sortedCharacters.forEach((character, index) => {
+      if (character.type !== lastType) {
+        elements.push(<h3 className="character-header" key={`header-${character.type}`}>{character.type === 'ski' ? 'Skiers 🎿' : 'Boarders 🏂'}</h3>);
+        lastType = character.type;
+      }
+      elements.push(
+        <div key={index} className="character-box">
+          <button onClick={() => onSelect(character)} className="character-button">
+            <img src={character.image} alt={character.name} className="character-image" />
+          </button>
+          <span className="character-name">{character.name}</span>
+        </div>
+      );
+    });
+  
+    return elements;
+  };
+  
 
   return (
     <div className="character-selection">
@@ -22,20 +59,15 @@ const CharacterSelection = ({ characters, onSelect }) => {
         <button onClick={() => setSelectedType('all')}>All</button>
       </div>
       <div className="character-grid">
-        {sortCharacters().map((character, index) => (
-          <div key={index} className="character-box">
-            <button onClick={() => onSelect(character)} className="character-button">
-              <img src={character.image} alt={character.name} className="character-image" />
-            </button>
-            <span className="character-name">{character.name}</span>
-          </div>
-        ))}
+        {renderCharacters()}
       </div>
     </div>
   );
 };
 
 export default CharacterSelection;
+
+
 
 
 
