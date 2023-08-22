@@ -17,14 +17,7 @@ const CharacterSelection = ({ characters, onSelect }) => {
 
   const renderCharacters = () => {
     if (selectedType === 'all') {
-      return sortCharacters().map((character, index) => (
-        <div key={index} className="character-box">
-          <button onClick={() => onSelect(character)} className="character-button">
-            <img src={character.image} alt={character.name} className="character-image" />
-          </button>
-          <span className="character-name">{character.name}</span>
-        </div>
-      ));
+      return sortCharacters().map((character, index) => renderCharacterBox(character, index));
     }
   
     const sortedCharacters = sortCharacters();
@@ -33,21 +26,32 @@ const CharacterSelection = ({ characters, onSelect }) => {
   
     sortedCharacters.forEach((character, index) => {
       if (character.type !== lastType) {
-        elements.push(<h3 className="character-header" key={`header-${character.type}`}>{character.type === 'ski' ? 'Skiers 🎿' : 'Boarders 🏂'}</h3>);
+        elements.push(
+          <div key={`group-${character.type}`}>
+            <h3 className="character-header">{character.type === 'ski' ? 'Skiers 🎿' : 'Boarders 🏂'}</h3>
+            <div className="character-grid">
+              {sortedCharacters
+                .filter((c) => c.type === character.type)
+                .map((c, i) => renderCharacterBox(c, i))}
+            </div>
+          </div>
+        );
         lastType = character.type;
       }
-      elements.push(
-        <div key={index} className="character-box">
-          <button onClick={() => onSelect(character)} className="character-button">
-            <img src={character.image} alt={character.name} className="character-image" />
-          </button>
-          <span className="character-name">{character.name}</span>
-        </div>
-      );
     });
   
     return elements;
   };
+  
+  const renderCharacterBox = (character, index) => (
+    <div key={index} className="character-box">
+      <button onClick={() => onSelect(character)} className="character-button">
+        <img src={character.image} alt={character.name} className="character-image" />
+      </button>
+      <span className="character-name">{character.name}</span>
+    </div>
+  );
+  
   
 
   return (
