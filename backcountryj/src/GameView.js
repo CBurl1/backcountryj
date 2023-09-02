@@ -18,11 +18,8 @@ const GameView = () => {
   const [skierPosition, setSkierPosition] = useState({ x: 400, y: 300 });
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [type, setType] = useState(null);
-  const [obstacles, setObstacles] = useState([
-    { x: 300, y: 200, type: 'rock' },
-    { x: 500, y: 400, type: 'tree' },
-    // Add more obstacles here
-  ]);
+  const [obstacles, setObstacles] = useState([]);
+
   const characters = [
     { name: 'Jadon', image: jadon, type: 'snowboard' },
     { name: 'Christian', image: christian, type: 'ski' },
