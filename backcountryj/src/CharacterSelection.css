@@ -60,12 +60,21 @@
 }
 
 .character-header {
-  font-size: 1.2em;
-  color: #fff;
-  margin: 20px 0;
+  font-size: 1.5em;
+  color: var(--oxford-blue);
+  margin: 20px auto; /* Center the box horizontally */
   text-align: center;
   font-weight: bold;
+  border: 2px solid var(--dim-gray);
+  padding: 10px;
+  background-color: var(--silver-lake-blue);
+  width: 95%; /* Increase the width to make the box wider */
+  max-width: 800px; /* Optional: Increase the maximum width if needed */
+  display: block; /* Make sure the box is treated as a block-level element */
 }
+
+
+
 
 
   

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SnowForestBackground from './Background.js';
 import Skier from './Skier';
 import CharacterSelection from './CharacterSelection';
+import Obstacles from './Obstacles';
 import croc from './bj-croc.png';
 import ian from './bj-ian.png'
 import jadon from './bj-jadon.png'
@@ -17,6 +18,11 @@ const GameView = () => {
   const [skierPosition, setSkierPosition] = useState({ x: 400, y: 300 });
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [type, setType] = useState(null);
+  const [obstacles, setObstacles] = useState([
+    { x: 300, y: 200, type: 'rock' },
+    { x: 500, y: 400, type: 'tree' },
+    // Add more obstacles here
+  ]);
   const characters = [
     { name: 'Jadon', image: jadon, type: 'snowboard' },
     { name: 'Christian', image: christian, type: 'ski' },
@@ -65,6 +71,7 @@ const GameView = () => {
         <>
           <SnowForestBackground width={800} height={600} />
           <Skier character={selectedCharacter} x={skierPosition.x} y={skierPosition.y} />
+          <Obstacles obstacles={obstacles} />
         </>
       ) : (
         <>
