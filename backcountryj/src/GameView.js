@@ -3,16 +3,16 @@ import SnowForestBackground from './Background.js';
 import Skier from './Skier';
 import CharacterSelection from './CharacterSelection';
 import Obstacles from './Obstacles';
-import croc from './bj-croc.png';
-import ian from './bj-ian.png'
+// import croc from './bj-croc.png';
+// import ian from './bj-ian.png'
 import jadon from './bj-jadon.png'
-import jake from './bj-jake.png'
+// import jake from './bj-jake.png'
 import christian from './bj-christian.png'
-import greg from './bj-greg.png'
-import grizz from './bj-grizz.png'
-import mac from './bj-mac.png'
-import nate from './bj-nate.png'
-import ben from './bj-ben.png'
+// import greg from './bj-greg.png'
+// import grizz from './bj-grizz.png'
+// import mac from './bj-mac.png'
+// import nate from './bj-nate.png'
+// import ben from './bj-ben.png'
 
 const GameView = () => {
   const [skierPosition, setSkierPosition] = useState({ x: 400, y: 300 });
@@ -23,14 +23,14 @@ const GameView = () => {
   const characters = [
     { name: 'Jadon', image: jadon, type: 'snowboard' },
     { name: 'Christian', image: christian, type: 'ski' },
-    { name: 'Greg', image: greg, type: 'ski' },
-    { name: 'Grizz', image: grizz, type: 'snowboard' },
-    { name: 'Mac', image: mac, type: 'ski' },
-    { name: 'Nate', image: nate, type: 'ski' },
-    { name: 'Ben', image: ben, type: 'ski' },
-    { name: 'Ian', image: ian, type: 'snowboard' },
-    { name: 'Croc', image: croc, type: 'ski' },
-    { name: 'Jake', image: jake, type: 'ski'},
+    // { name: 'Greg', image: greg, type: 'ski' },
+    // { name: 'Grizz', image: grizz, type: 'snowboard' },
+    // { name: 'Mac', image: mac, type: 'ski' },
+    // { name: 'Nate', image: nate, type: 'ski' },
+    // { name: 'Ben', image: ben, type: 'ski' },
+    // { name: 'Ian', image: ian, type: 'snowboard' },
+    // { name: 'Croc', image: croc, type: 'ski' },
+    // { name: 'Jake', image: jake, type: 'ski'},
   ];
 
   const handleCharacterSelect = (character) => {
