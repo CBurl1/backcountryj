@@ -51,3 +51,5 @@ describe('<CharacterSelection />', () => {
     expect(mockOnSelect).toHaveBeenCalledWith(characters[0]);
   });
 });
+
+// work on test
