@@ -36,9 +36,18 @@ const SnowForestBackground = ({ width, height }) => {
     context.stroke();
   };
 
+  const drawRock = (context, x, y, width, height) => {
+    context.fillStyle = '#808080';  // Gray color for rock
+    context.beginPath();
+    context.ellipse(x + width / 2, y + height / 2, width / 2, height / 2, 0, 0, 2 * Math.PI);
+    context.fill();
+  };
+
   const drawForest = (context) => {
     const treeWidth = 40;
     const treeHeight = 40;
+    const rockWidth = 30;
+    const rockHeight = 20;
 
     forestPattern.forEach((variation, index) => {
       const y = index * treeHeight;
@@ -47,6 +56,20 @@ const SnowForestBackground = ({ width, height }) => {
       }
       for (let x = canvasRef.current.width - variation; x < canvasRef.current.width; x += treeWidth) {
         drawTree(context, x, y, treeWidth, treeHeight);
+      }
+
+      // Draw rocks and trees randomly in the middle of the trail
+      const numberOfRocksAndTrees = Math.floor(Math.random() * 3);  // 0 to 2 rocks or trees
+      for (let i = 0; i < numberOfRocksAndTrees; i++) {
+        const minX = variation + treeWidth;  // Just after the forest on the left
+        const maxX = canvasRef.current.width - variation - treeWidth - rockWidth;  // Just before the forest on the right
+        const x = Math.random() * (maxX - minX) + minX;
+
+        if (Math.random() > 0.5) {
+          drawTree(context, x, y, treeWidth, treeHeight);
+        } else {
+          drawRock(context, x, y, rockWidth, rockHeight);
+        }
       }
     });
   };
@@ -66,7 +89,6 @@ const SnowForestBackground = ({ width, height }) => {
     }
     setForestPattern(pattern);
   };
-  
 
   useEffect(() => {
     generateForestPattern();
@@ -95,4 +117,6 @@ const SnowForestBackground = ({ width, height }) => {
 };
 
 export default SnowForestBackground;
+
+
 
